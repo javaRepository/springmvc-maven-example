@@ -1,0 +1,22 @@
+<#compress>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN""http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title>Upload Source</title>
+		<META HTTP-EQUIV="Pragma" CONTENT="no-cache" />
+		<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache" />
+		<META HTTP-EQUIV="Expires" CONTENT="0" />
+		<#include "../style.html" >
+	</head>
+	<body>
+		Upload Fail.<br/>
+
+		<#if Request.content??>
+			<b>${Request.content?html}</b><br/>
+		</#if>
+
+		<u><a href="uploadPhoto?userInfo=${RequestParameters.userInfo?html}">Return</a></u>
+	</body>
+</html>
+</#compress>

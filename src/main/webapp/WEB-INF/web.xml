@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee"
+		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+
+	<display-name>springmvc-maven-example</display-name>
+	<disciption>springmvc-maven-example 示例项目。尹金亮负责</disciption>
+
+	<!--在log4j.properties配置文件，就可以按下面的方式使用${example.root}
+		就可以在运行时动态的找出项目的路径-->
+	<context-param>
+		<param-name>webAppRootKey</param-name>
+		<param-value>example.root</param-value>
+	</context-param>
+
+	<!-- 关闭session -->
+	<session-config>
+		<session-timeout>1</session-timeout>
+	</session-config>
+
+	<!--Log4j -->
+	<context-param>
+		<param-name>log4jConfigLocation</param-name>
+		<param-value>/WEB-INF/classes/log4j.properties</param-value>
+	</context-param>
+	<context-param>
+		<param-name>log4jRefreshInterval</param-name>
+		<param-value>6000</param-value>
+	</context-param>
+	<listener>
+		<listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
+	</listener>
+
+	<!--druid -->
+	<servlet>
+		<servlet-name>DruidStatView</servlet-name>
+		<servlet-class>com.alibaba.druid.support.http.StatViewServlet</servlet-class>
+		<init-param>
+			<param-name>allow</param-name>
+			<!--指定ip或ip段 可以访问http://127.0.0.1:8080/druid/index.html监控-->
+			<param-value>127.0.0.1,172.17.0.0/16</param-value>
+		</init-param>
+		<init-param>
+			<param-name>remoteAddress</param-name>
+			<param-value>X-Real-IP</param-value>
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DruidStatView</servlet-name>
+		<url-pattern>/druid/*</url-pattern>
+	</servlet-mapping>
+
+	<filter>
+		<filter-name>DruidWebStatFilter</filter-name>
+		<filter-class>com.alibaba.druid.support.http.WebStatFilter</filter-class>
+		<init-param>
+			<param-name>exclusions</param-name>
+			<param-value>*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*</param-value>
+		</init-param>
+		<init-param>
+			<param-name>profileEnable</param-name>
+			<param-value>true</param-value>
+		</init-param>
+		<init-param>
+			<param-name>sessionStatEnable</param-name>
+			<param-value>false</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>DruidWebStatFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+	<servlet>
+		<servlet-name>appServlet</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>
+				/WEB-INF/classes/application-context.xml
+				<!--/WEB-INF/classes/aierlan/application-context.xml-->
+				<!--/WEB-INF/classes/singapore/application-context.xml-->
+				<!--/WEB-INF/classes/localhost/application-context.xml-->
+			</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>appServlet</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+
+	<!-- 编码 -->
+	<filter>
+		<filter-name>encodingFilter</filter-name>
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+		<init-param>
+			<param-name>forceEncoding</param-name>
+			<param-value>false</param-value>
+		</init-param>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>encodingFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+	<filter>
+		<filter-name>LogAndProjectFilter</filter-name>
+		<filter-class>com.jtool.support.log.LogAndProjectFilter</filter-class>
+		<init-param>
+			<param-name>projectName</param-name>
+			<param-value>example</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>LogAndProjectFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+	<!--配置freemarker异常-->
+	<error-page>
+		<exception-type>com.company.example.exception.view.FreemarkerException</exception-type>
+		<location>/WEB-INF/ftl/freemarker_error.jsp</location>
+	</error-page>
+
+
+</web-app>

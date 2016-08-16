@@ -1,0 +1,23 @@
+<#compress>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN""http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title>Not Login Info</title>
+		<META HTTP-EQUIV="Pragma" CONTENT="no-cache" />
+		<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache" />
+		<META HTTP-EQUIV="Expires" CONTENT="0" />
+		<#include "style.html" >
+	</head>
+	<body>
+		Not login or lost you session,
+		<#if Request.userInfo??>
+			<a href="autoLogin">re-login</a>
+		<#else>
+			<a href="login">re-login</a>
+		</#if>
+		again or back to
+		<a href="/">homepage</a>.
+	</body>
+</html>
+</#compress>

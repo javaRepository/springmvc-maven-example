@@ -1,0 +1,26 @@
+*{margin: 0px;padding: 0px;}
+body{font-family: Arial;font-size: small;color: black;background: #f5f5f5;}
+img{border: 0px;}
+a{text-decoration: none;color: #0059b4;}
+/* a:VISITED{color: #0059b4;} */
+table{width: 100%;}
+.g{color: #FF9000;}
+.gb{background-color: #358de7;}
+.p2{padding: 2px;}
+.p5{padding: 5px;}
+.w{color: #fff;}
+.bl{color: #0059b4;}
+.gr{color: green;}
+.r{color: red;}
+.c{text-align: center;}
+.b{font-weight: bold;}
+.udl{border-bottom-width: 1px;}
+.un{border-bottom: 1px solid #c0c0c0;}
+.db{color: #014991;}
+.or{color: #d07306;}
+.bb{background-color: #006cd4;}
+.bb a{color: #fff;}
+.bb a:visited {color: #fff}
+#room{background-color: #1f2531;color:#fff;}
+#room a{text-decoration: underline;}
+.ca a{color:#fff;}

@@ -1,0 +1,47 @@
+<#compress>
+<#setting url_escaping_charset="UTF-8">
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN""http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title>Register</title>
+		<META HTTP-EQUIV="Pragma" CONTENT="no-cache" />
+		<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache" />
+		<META HTTP-EQUIV="Expires" CONTENT="0" />
+		<#include "../style.html" >
+	</head>
+
+	<body>
+		<#if Request.errorType??>
+			<#if Request.errorType = 1>
+				<div class="r">Please enter the username.</div>
+			<#elseif Request.errorType = 2>
+				<div class="r">The username must be 6 to 16 characters, letters and numbers are allowed.</div>
+			<#elseif Request.errorType = 3>
+				<div class="r">Please enter the password.</div>
+			<#elseif Request.errorType = 4>
+				<div class="r">The password must be 6 to 16 characters, letters and numbers are allowed.</div>
+			<#elseif Request.errorType = 99>
+				<div class="r">An unknown error.</div>
+			<#else>
+
+			</#if>
+		</#if>
+
+		<form name="registerForm" action="register_do" method="post">
+			UserName<span class="r">(*)</span>:<br/>
+			<input type="text" name="username" maxlength="16" />
+			<br/>
+
+			UserPassword<span class="r">(6-16)</span>:<br/>
+			<input type="password" name="userpassword" maxlength="16"/>
+			<br/>
+
+			<input name="submit" type="submit" value="Register" />
+		</form>
+		<hr/>
+
+		<u><a href="login">Login</a></u>
+	</body>
+</html>
+</#compress>

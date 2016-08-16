@@ -1,0 +1,26 @@
+<#compress>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN""http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title>Error</title>
+		<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+		<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache">
+		<META HTTP-EQUIV="Expires" CONTENT="0">
+		<#include "style.html" >
+	</head>
+	<body>
+		<#if RequestParameters.sessionId??>
+			Network unavailable, please <a href="home?userInfo=${RequestParameters.userInfo?html}">retry</a>
+			or <a href="login?userInfo=${RequestParameters.userInfo?html}">re-login</a>.
+		<#else>
+			Network unavailable, please <a href="/">retry</a> or <a href="login">re-login</a>.
+		</#if>
+
+		<div style="display:none;">
+			 ${Request.errorMsg!''?html}
+		</div>
+
+	</body>
+</html>
+</#compress>

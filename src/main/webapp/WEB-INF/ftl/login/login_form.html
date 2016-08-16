@@ -1,0 +1,44 @@
+<#compress>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN""http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title>Login</title>
+		<meta HTTP-EQUIV="Pragma" CONTENT="no-cache" />
+		<meta HTTP-EQUIV="Cache-Control" CONTENT="no-cache" />
+		<meta HTTP-EQUIV="Expires" CONTENT="0" />
+		<#include "../style.html" >
+	</head>
+
+	<body>
+		<#if Request.errorType??>
+			<#if Request.errorType = 1>
+				<div class="r">Please enter the username.</div>
+			<#elseif Request.errorType = 2>
+				<div class="r">Please enter the password.</div>
+			<#elseif Request.errorType = 3>
+				<div class="r">Invalid account or password. Please enter again.</div>
+			<#else>
+
+			</#if>
+		</#if>
+
+		<form name="login_form" action="login_do" method="post">
+			UserName:<br/>
+			<input type="text" name="username" />
+			<br/>
+
+			UserPassword(6-16):<br/>
+			<input type="password" name="userpassword" />
+			<br/>
+
+			<input type="submit" name="submit" value="Login" />
+			<br/>
+
+			<u><a href="register" class="u">Sign Up</a></u>
+			<br/>
+		</form>
+
+	</body>
+</html>
+</#compress>
